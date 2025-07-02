@@ -1,8 +1,13 @@
-name: ChangeVelocityPlugin
+name: MomentumControlPlugin
 version: 1.0
-main: com.example.changevelocity.ChangeVelocityPlugin
+main: com.Pumpgun.MomentumControl.MomentumControlPlugin
+author: Pumpgun
+description: A plugin that allows players to change their velocity (speed) and grants temporary no-fall-damage protection.
 api-version: 1.21
 commands:
   changevelocity:
-    description: Changes the player's velocity when bouncing off slime blocks.
-    usage: /<command>
+    description: Multiplies the velocity (speed) of the player(s) and grants temporary no-fall-damage protection.
+    usage: /changevelocity <player|selector> <value>
+  changehorizontalvelocity:
+    description: Multiplies only the horizontal (X/Z) velocity of the player(s) and grants temporary no-fall-damage protection.
+    usage: /changehorizontalvelocity <player|selector> <value>

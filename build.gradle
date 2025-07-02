@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'com.example.changevelocity'
+group 'com.Pumpgun.MomentumControl'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -22,9 +22,11 @@ tasks.withType(JavaCompile) {
 }
 
 jar {
+    archiveBaseName.set('MomentumControlPlugin')
+    archiveVersion.set('1.0')
     manifest {
         attributes(
-            'Main-Class': 'com.example.changevelocity.ChangeVelocityPlugin'
+            'Main-Class': 'com.Pumpgun.MomentumControl.MomentumControlPlugin'
         )
     }
 }

@@ -11,14 +11,20 @@ MomentumControl is a Minecraft Paper plugin that allows command blocks to **chan
 - Does **not** fling players upward—only multiplies their current movement speed.
 
 ## Usage
-- Use a command block to run `/changevelocity <player> <value>`.  
+- Use a command block to run `/changevelocity <player> <value>`.
   - `<player>` can be a player name or a selector (`@p`, `@a`, `@s`, etc.).
-  - `<value>` is the velocity multiplier (use any value between 0.1 and 10).
+  - `<value>` is the velocity multiplier.
 - The player(s) will have their velocity (speed) multiplied and will not take fall damage until they next touch the ground.
 
+- Use a command block to run `/changehorizontalvelocity <player> <value>`.
+  - `<player>` can be a player name or a selector (`@p`, `@a`, `@s`, etc.).
+  - `<value>` is the horizontal velocity multiplier.
+- The player(s) will have only their horizontal (X/Z) velocity multiplied and will not take fall damage until they next touch the ground.
+
 ## Commands
-- `/changevelocity <player> <value>`: Multiplies the velocity (speed) of the player(s) and grants temporary no-fall-damage protection.  
-  **Note:** This command can only be run by a command block.
+- `/changevelocity <player> <value>`: Launches the player(s) in the direction they are facing and grants temporary no-fall-damage protection.
+- `/changehorizontalvelocity <player> <value>`: Multiplies only the horizontal (X/Z) velocity of the player(s) and grants temporary no-fall-damage protection.
+  **Note:** These commands can only be run by a command block.
 
 ## Installation
 
