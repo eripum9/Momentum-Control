@@ -1,6 +1,6 @@
 # MomentumControl
 
-![MomentumControl1.png](MomentumControl.png)
+![MomentumControl1.png](MomentumControl1.png)
 
 ## Overview
 MomentumControl is a Minecraft Paper plugin that allows command blocks to **change the velocity (speed) of a desired player** and grant them temporary no-fall-damage protection. This is useful for custom maps, minigames, or automation where you want to speed up or slow down players and prevent fall damage after triggering a command block (for example, with a tripwire).
