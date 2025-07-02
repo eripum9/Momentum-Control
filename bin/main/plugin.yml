@@ -1,0 +1,8 @@
+name: ChangeVelocityPlugin
+version: 1.0
+main: com.example.changevelocity.ChangeVelocityPlugin
+api-version: 1.21
+commands:
+  changevelocity:
+    description: Changes the player's velocity when bouncing off slime blocks.
+    usage: /<command>
