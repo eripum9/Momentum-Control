@@ -56,7 +56,10 @@ public class ChangeVelocityCommand implements CommandExecutor {
 
         for (Entity entity : targets) {
             if (entity instanceof Player target) {
-                target.setVelocity(target.getVelocity().multiply(value));
+                // Fling the player straight up with the given Y velocity
+                org.bukkit.util.Vector v = target.getVelocity();
+                v.setY(value);
+                target.setVelocity(v);
                 plugin.getNoFallPlayers().add(target.getUniqueId());
             }
         }

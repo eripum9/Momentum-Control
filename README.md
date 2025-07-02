@@ -4,32 +4,32 @@
 MomentumControl is a Minecraft Paper plugin that allows command blocks to **change the velocity (speed) of a desired player** and grant them temporary no-fall-damage protection. This is useful for custom maps, minigames, or automation where you want to speed up or slow down players and prevent fall damage after triggering a command block (for example, with a tripwire).
 
 ## Features
-- Change the velocity (speed) of a player via command block (supports selectors like `@p`, `@a`, `@s`, etc.).
+- Change the velocity (speed) of a player via command block, console, or as an operator (supports player names and selectors: `@p`, `@a`, `@s`).
 - Grant no-fall-damage protection to affected players.
 - Automatically removes protection when the player lands on the ground.
 - No slime block mechanics required, you can also use other movement methods.
-- Does **not** fling players upward—only multiplies their current movement speed.
+- `/changevelocity` flings players upward, `/changehorizontalvelocity` flings them forward in the direction they are facing.
 
 ## Usage
-- Use a command block to run `/changevelocity <player> <value>`.
-  - `<player>` can be a player name or a selector (`@p`, `@a`, `@s`, etc.).
-  - `<value>` is the velocity multiplier.
-- The player(s) will have their velocity (speed) multiplied and will not take fall damage until they next touch the ground.
+- Use `/changevelocity <player|selector> <value>`
+  - `<player|selector>` can be a player name or a selector (`@p`, `@a`, `@s`, etc.).
+  - `<value>` is the upward velocity to apply.
+- The player(s) will be launched upward and will not take fall damage until they next touch the ground.
 
-- Use a command block to run `/changehorizontalvelocity <player> <value>`.
-  - `<player>` can be a player name or a selector (`@p`, `@a`, `@s`, etc.).
-  - `<value>` is the horizontal velocity multiplier.
-- The player(s) will have only their horizontal (X/Z) velocity multiplied and will not take fall damage until they next touch the ground.
+- Use `/changehorizontalvelocity <player|selector> <value>`
+  - `<player|selector>` can be a player name or a selector (`@p`, `@a`, `@s`, etc.).
+  - `<value>` is the horizontal velocity to apply.
+- The player(s) will be launched forward in the direction they are facing and will not take fall damage until they next touch the ground.
 
 ## Commands
-- `/changevelocity <player> <value>`: Launches the player(s) in the direction they are facing and grants temporary no-fall-damage protection.
-- `/changehorizontalvelocity <player> <value>`: Multiplies only the horizontal (X/Z) velocity of the player(s) and grants temporary no-fall-damage protection.
-  **Note:** These commands can only be run by a command block.
+- `/changevelocity <player|selector> <value>`: Launches the player(s) upward and grants temporary no-fall-damage protection.
+- `/changehorizontalvelocity <player|selector> <value>`: Launches the player(s) forward in the direction they are facing and grants temporary no-fall-damage protection.
+  **Note:** These commands can be run by a command block, the console, or an operator.
 
 ## Installation
 
 ### Using the Prebuilt JAR (Recommended)
-1. Go to the [Releases](https://github.com/eripum9/Momentum-Control/releases) section of this repository.
+1. Go to the [Releases](https://github.com/yourusername/yourrepo/releases) section of this repository.
 2. Download the latest `MomentumControl-x.x.x.jar` file.
 3. Place the JAR file into the `plugins` folder of your Paper server.
 4. Restart the server to load the plugin.
