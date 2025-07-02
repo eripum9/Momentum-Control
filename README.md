@@ -10,12 +10,6 @@ MomentumControl is a Minecraft Paper plugin that allows command blocks to **chan
 - No slime block mechanics required, you can also use other movement methods.
 - Does **not** fling players upward—only multiplies their current movement speed.
 
-## Installation
-1. Ensure you have a Minecraft server running Paper.
-2. Download the latest version of the MomentumControl JAR file.
-3. Place the JAR file into the `plugins` folder of your Paper server.
-4. Restart the server to load the plugin.
-
 ## Usage
 - Use a command block to run `/changevelocity <player> <value>`.  
   - `<player>` can be a player name or a selector (`@p`, `@a`, `@s`, etc.).
@@ -25,6 +19,22 @@ MomentumControl is a Minecraft Paper plugin that allows command blocks to **chan
 ## Commands
 - `/changevelocity <player> <value>`: Multiplies the velocity (speed) of the player(s) and grants temporary no-fall-damage protection.  
   **Note:** This command can only be run by a command block.
+
+## Installation
+
+### Using the Prebuilt JAR (Recommended)
+1. Go to the [Releases](https://github.com/yourusername/yourrepo/releases) section of this repository.
+2. Download the latest `MomentumControl-x.x.x.jar` file.
+3. Place the JAR file into the `plugins` folder of your Paper server.
+4. Restart the server to load the plugin.
+
+### Building the Plugin Yourself
+1. Clone or download this repository to your computer.
+2. Open a terminal in the project directory.
+3. Run `gradlew build` (Windows) or `./gradlew build` (Linux/macOS).
+4. The compiled JAR will be in the `build/libs` folder.
+5. Place the JAR file into the `plugins` folder of your Paper server.
+6. Restart the server to load the plugin.
 
 ## Development
 This plugin is developed using Java and the Paper API. To build the project, use Gradle. Ensure you have the necessary dependencies specified in the `build.gradle` file.
