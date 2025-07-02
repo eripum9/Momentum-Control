@@ -23,7 +23,7 @@ MomentumControl is a Minecraft Paper plugin that allows command blocks to **chan
 ## Installation
 
 ### Using the Prebuilt JAR (Recommended)
-1. Go to the [Releases](https://github.com/yourusername/yourrepo/releases) section of this repository.
+1. Go to the [Releases](https://github.com/eripum9/Momentum-Control/releases) section of this repository.
 2. Download the latest `MomentumControl-x.x.x.jar` file.
 3. Place the JAR file into the `plugins` folder of your Paper server.
 4. Restart the server to load the plugin.
