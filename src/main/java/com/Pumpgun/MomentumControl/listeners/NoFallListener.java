@@ -30,7 +30,7 @@ public class NoFallListener implements Listener {
         if (!plugin.getNoFallPlayers().contains(player.getUniqueId())) return;
 
         // Avoid deprecated isOnGround: detect support block just beneath the player
-        boolean onGround = player.getLocation().subtract(0, 0.1, 0).getBlock().getType().isSolid();
+        boolean onGround = player.getLocation().clone().subtract(0, 0.1, 0).getBlock().getType().isSolid();
         if (!onGround) {
             // Consider landing in fluids as a valid landing to clear the flag
             onGround = player.getLocation().getBlock().isLiquid();
