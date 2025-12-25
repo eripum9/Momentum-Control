@@ -56,10 +56,24 @@ public class ChangeHorizontalVelocityCommand implements CommandExecutor {
 
         for (Entity entity : targets) {
             if (entity instanceof Player target) {
-                // Fling the player forward in the direction they are facing, with the given horizontal speed
-                org.bukkit.util.Vector direction = target.getLocation().getDirection().setY(0).normalize().multiply(value);
-                direction.setY(target.getVelocity().getY()); // preserve current Y velocity
-                target.setVelocity(direction);
+                org.bukkit.util.Vector direction = target.getLocation().getDirection();
+                org.bukkit.util.Vector horizontalDirection = direction.clone();
+                horizontalDirection.setY(0);
+                if (horizontalDirection.lengthSquared() < 0.0001) {
+                    // Try using existing horizontal momentum if player is not looking anywhere
+                    org.bukkit.util.Vector existing = target.getVelocity().clone();
+                    existing.setY(0);
+                    horizontalDirection = existing;
+                }
+                if (horizontalDirection.lengthSquared() < 0.0001) {
+                    horizontalDirection = new org.bukkit.util.Vector(1, 0, 0); // final fallback
+                }
+
+                org.bukkit.util.Vector horizontal = horizontalDirection.normalize().multiply(value);
+                horizontal.setY(target.getVelocity().getY()); // preserve vertical velocity
+
+                target.setVelocity(horizontal);
+                target.setFallDistance(0f);
                 plugin.getNoFallPlayers().add(target.getUniqueId());
             }
         }
