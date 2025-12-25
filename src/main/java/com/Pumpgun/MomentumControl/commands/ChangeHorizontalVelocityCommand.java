@@ -57,18 +57,19 @@ public class ChangeHorizontalVelocityCommand implements CommandExecutor {
         for (Entity entity : targets) {
             if (entity instanceof Player target) {
                 org.bukkit.util.Vector direction = target.getLocation().getDirection();
-                direction.setY(0);
-                if (direction.lengthSquared() < 0.0001) {
+                org.bukkit.util.Vector horizontalDirection = direction.clone();
+                horizontalDirection.setY(0);
+                if (horizontalDirection.lengthSquared() < 0.0001) {
                     // Try using existing horizontal momentum if player is not looking anywhere
                     org.bukkit.util.Vector existing = target.getVelocity().clone();
                     existing.setY(0);
-                    direction = existing;
+                    horizontalDirection = existing;
                 }
-                if (direction.lengthSquared() < 0.0001) {
-                    direction = new org.bukkit.util.Vector(1, 0, 0); // final fallback
+                if (horizontalDirection.lengthSquared() < 0.0001) {
+                    horizontalDirection = new org.bukkit.util.Vector(1, 0, 0); // final fallback
                 }
 
-                org.bukkit.util.Vector horizontal = direction.normalize().multiply(value);
+                org.bukkit.util.Vector horizontal = horizontalDirection.normalize().multiply(value);
                 horizontal.setY(target.getVelocity().getY()); // preserve vertical velocity
 
                 target.setVelocity(horizontal);
