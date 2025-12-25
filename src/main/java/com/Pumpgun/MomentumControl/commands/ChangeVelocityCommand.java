@@ -60,12 +60,13 @@ public class ChangeVelocityCommand implements CommandExecutor {
                 org.bukkit.util.Vector current = target.getVelocity().clone();
 
                 // Add directional push and override vertical component so standing players still move
-                org.bukkit.util.Vector applied = current.add(direction.multiply(value));
-                applied.setY(value);
-
+                org.bukkit.util.Vector applied;
                 // Fallback if direction was zero-length
-                if (applied.lengthSquared() < 0.0001) {
+                if (direction.lengthSquared() < 0.0001) {
                     applied = new org.bukkit.util.Vector(0, value, 0);
+                } else {
+                    applied = current.add(direction.multiply(value));
+                    applied.setY(value);
                 }
 
                 target.setVelocity(applied);
