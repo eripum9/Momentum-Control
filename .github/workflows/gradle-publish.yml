@@ -1,17 +1,20 @@
-name: Gradle Package
+name: Build & Release
 
 on:
+  push:
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 jobs:
   build-release:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      packages: write
+      contents: write
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Set up JDK 21
       uses: actions/setup-java@v4
       with:
@@ -19,15 +22,33 @@ jobs:
         distribution: 'temurin'
 
     - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v5.0.0
+      uses: gradle/actions/setup-gradle@v4
 
     - name: Build with Gradle
       run: ./gradlew build
 
-    - name: Create Draft Release
-      uses: softprops/action-gh-release@v1
+    - name: Get version from tag
+      id: version
+      run: echo "VERSION=${GITHUB_REF_NAME:-manual}" >> $GITHUB_OUTPUT
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      if: startsWith(github.ref, 'refs/tags/')
       with:
-        draft: true
+        name: MomentumControl ${{ steps.version.outputs.VERSION }}
+        body: |
+          ## MomentumControl ${{ steps.version.outputs.VERSION }}
+
+          Download the JAR below and place it in your server's `plugins` folder.
         files: build/libs/*.jar
+        draft: false
+        prerelease: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload artifact (manual runs)
+      if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: MomentumControlPlugin
+        path: build/libs/*.jar

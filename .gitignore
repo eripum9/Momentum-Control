@@ -2,12 +2,14 @@
 .gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
 
 # Eclipse
 .settings/
 bin/
 .classpath
 .project
+.factorypath
 
 # IntelliJ IDEA
 .idea/
@@ -29,5 +31,30 @@ nbdist/
 # Mac
 .DS_Store
 
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
 # Log files
 *.log
+
+# Java
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+hs_err_pid*
+replay_pid*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# OS generated files
+.Spotlight-V100
+.Trashes
