@@ -27,28 +27,28 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
-    - name: Get version from tag
+    - name: Get version
       id: version
-      run: echo "VERSION=${GITHUB_REF_NAME:-manual}" >> $GITHUB_OUTPUT
+      run: |
+        if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+          echo "VERSION=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+          echo "TAG=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+        else
+          echo "VERSION=$(date +'%Y.%m.%d')-${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+          echo "TAG=v$(date +'%Y.%m.%d')-${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+        fi
 
-    - name: Create Release
+    - name: Create Draft Release
       uses: softprops/action-gh-release@v2
-      if: startsWith(github.ref, 'refs/tags/')
       with:
+        tag_name: ${{ steps.version.outputs.TAG }}
         name: MomentumControl ${{ steps.version.outputs.VERSION }}
         body: |
           ## MomentumControl ${{ steps.version.outputs.VERSION }}
 
           Download the JAR below and place it in your server's `plugins` folder.
         files: build/libs/*.jar
-        draft: false
+        draft: true
         prerelease: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Upload artifact (manual runs)
-      if: ${{ !startsWith(github.ref, 'refs/tags/') }}
-      uses: actions/upload-artifact@v4
-      with:
-        name: MomentumControlPlugin
-        path: build/libs/*.jar
