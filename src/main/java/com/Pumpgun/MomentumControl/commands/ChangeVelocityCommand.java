@@ -56,10 +56,21 @@ public class ChangeVelocityCommand implements CommandExecutor {
 
         for (Entity entity : targets) {
             if (entity instanceof Player target) {
-                // Fling the player straight up with the given Y velocity
-                org.bukkit.util.Vector v = target.getVelocity();
-                v.setY(value);
-                target.setVelocity(v);
+                org.bukkit.util.Vector direction = target.getLocation().getDirection().normalize();
+                org.bukkit.util.Vector current = target.getVelocity().clone();
+
+                // Add directional push and override vertical component so standing players still move
+                org.bukkit.util.Vector applied;
+                // Fallback if direction was zero-length
+                if (direction.lengthSquared() < 0.0001) {
+                    applied = new org.bukkit.util.Vector(0, value, 0);
+                } else {
+                    applied = current.add(direction.multiply(value));
+                    applied.setY(value);
+                }
+
+                target.setVelocity(applied);
+                target.setFallDistance(0f);
                 plugin.getNoFallPlayers().add(target.getUniqueId());
             }
         }

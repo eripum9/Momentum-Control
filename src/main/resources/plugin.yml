@@ -1,9 +1,9 @@
 name: MomentumControlPlugin
-version: 1.0
+version: 1.1.0
 main: com.Pumpgun.MomentumControl.MomentumControlPlugin
 author: Pumpgun
 description: A plugin that allows players to change their velocity (speed) and grants temporary no-fall-damage protection.
-api-version: 1.21
+api-version: 1.21.1
 commands:
   changevelocity:
     description: Multiplies the velocity (speed) of the player(s) and grants temporary no-fall-damage protection.
