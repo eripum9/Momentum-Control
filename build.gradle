@@ -5,6 +5,12 @@ plugins {
 group = 'com.Pumpgun.MomentumControl'
 version = '1.1.0'
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(26)
+    }
+}
+
 repositories {
     mavenCentral()
     maven {
@@ -14,11 +20,12 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT'
+    compileOnly 'io.papermc.paper:paper-api:26.1.2.build.24-alpha'
 }
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+    options.release = 25
 }
 
 jar {
